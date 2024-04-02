@@ -1,25 +1,32 @@
 import socket
 import threading
 
-def check_connection(ip, port):
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect((ip, int(port)))
+# Input IP address and port number
+
+Ip_add = input("Enter the IP address: ")
+port_no = input("Enter the port number: ")
+
+
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+def check_connection(ip ):
     
     try:
-        client_socket.connect((ip, int(port)))
+        client_socket.connect((ip, 4080))
         print("Connection successful")
     except (socket.gaierror, ConnectionRefusedError):
         print("Connection failed, retrying...")
+
+
+def send_command(client_socket,command):
+    client_socket.send(command.encode())    
     
     
-# Input IP address and port number
-Ip_add = input("Enter the IP address: ")
-port_no = input("Enter the port number: ")
 
 # Create a thread to check the connection
 
 
-connection_thread = threading.Thread(target=check_connection, args=(Ip_add, port_no))
+connection_thread = threading.Thread(target=check_connection, args=(Ip_add))
 connection_thread.start()
  
 
@@ -34,11 +41,14 @@ while 1:
  if msg == '1':
     # First condition
     print("first condition met ")
+    send_command(client_socket,'1')
     
     pass
  elif msg == '2':
     # Second condition
     print("second condition met")
+    send_command(client_socket,'1')
+    
     pass
 else:
     # Third condition
