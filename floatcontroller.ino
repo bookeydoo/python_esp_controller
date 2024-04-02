@@ -43,17 +43,17 @@ void loop() {
     WiFiClient client = TCPserver.available();
     if(client) {
     
-        char command = client.read();
+        byte command = client.read();
         Serial.print("Received a command: ");
-        Serial.print(command,HEX);
-        if (command == '1') {
+        Serial.print(command);
+        if (command == 1) {
           Serial.print("1");
           Serial.print("first command has been put to work");// for debugging
 
         }
         // Add more commands and code here as needed
 
-      else if(command =='2'){
+      else if(command ==2){
         Serial.print("2");
         Serial.print("client ending");
         client.stop();
