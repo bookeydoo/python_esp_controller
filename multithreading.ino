@@ -23,7 +23,12 @@ void setup() {
     Serial.println("TCP server");
 
     pinMode(led1, OUTPUT);
-    pinMode(led2, OUTPUT);
+    pinMode(led2, OUTPUT); 
+
+    /*the idea behind using two leds is that one led keeps lighting no matter what happens
+    and the other lights only when the program connects to the wifi indicating success !!!
+    program worked الحمدلله
+    */
     
     //first thread or task
      xTaskCreatePinnedToCore(
@@ -87,8 +92,12 @@ void Task2code(void *pvParameters){
         Serial.println("Connecting ...");
     }
     Serial.println("Connected");
-    digitalWrite(led2,HIGH);
-    delay(5000);
+  /*on connecting the led turns on to indicate it works but since this is a thread
+  this causes a disconnect and a reconnect everytime the thread ends and repeats 
+  */
+   
+    digitalWrite(led2,HIGH);   
+    delay(5000);              
     digitalWrite(led2,LOW);
     delay(200);
 
