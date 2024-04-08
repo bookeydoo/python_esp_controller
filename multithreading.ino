@@ -1,4 +1,5 @@
 //this file is a test to check if its possible to multithread on esp32 devkit wroom
+//made using https://randomnerdtutorials.com/esp32-dual-core-arduino-ide/
 
 #include <WiFi.h>
 #include <WiFiClient.h>
